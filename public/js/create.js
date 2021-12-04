@@ -77,7 +77,7 @@ function checkInput() {
 		}
 
 		if (birthdayCheck) {
-			birthdayCheck = /^(0[1-9]|[12]\d|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/.test(birthday);
+			birthdayCheck = /^(0[1-9]|[12]\d|3[01])[/](0[1-9]|1[012])[/](19|20)\d\d$/.test(birthday);
 			if (!birthdayCheck) {
 				elTextBirthday.classList.remove("hidden");
 				elTextBirthday.querySelector("span").innerText = "Định dạng ngày sinh không đúng (dd/mm/yyyy)";

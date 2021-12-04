@@ -15,7 +15,7 @@
 			integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
 			crossorigin="anonymous"
 		/>
-
+		<link rel="stylesheet" href="./css/edit.css" />
 		<title>Cập nhật thông tin học viên</title>
 	</head>
 
@@ -32,13 +32,21 @@
 					<div class="col-sm-10">
 						<input type="text" id="name" class="form-control" />
 					</div>
+					<div class="col-sm-6 text-danger" id="warn-name">
+						<span>Tên không được để trống</span>
+					</div>
 				</div>
 
 				<div class="form-group row">
-					<label for="birthday" class="col-sm-2 col-form-label">Ngày sinh</label>
+					<label for="birthday" class="col-sm-2 col-form-label"
+						>Ngày sinh <span class="text-danger">*</span></label
+					>
 
 					<div class="col-sm-10">
 						<input type="text" id="birthday" class="form-control" />
+					</div>
+					<div class="col-sm-6 text-danger" id="warn-birthday">
+						<span>Ngày sinh không hợp lệ</span>
 					</div>
 				</div>
 
@@ -48,6 +56,9 @@
 					<div class="col-sm-10">
 						<input type="text" id="email" class="form-control" />
 					</div>
+					<div class="col-sm-6 text-danger" id="warn-email">
+						<span>Email không hợp lệ</span>
+					</div>
 				</div>
 
 				<div class="form-group row">
@@ -56,33 +67,39 @@
 					<div class="col-sm-10">
 						<input type="text" id="phone" class="form-control" />
 					</div>
+					<div class="col-sm-6 text-danger" id="warn-phone">
+						<span>Số điện thoại không hợp lệ</span>
+					</div>
 				</div>
 			</div>
 
 			<br />
 
 			<div class="text-center">
-				<button class="btn btn-secondary"><i class="fa fa-chevron-left"></i> Quay lại</button>
+				<button class="btn btn-secondary" id="button-return"><em class="fa fa-chevron-left"></em> Quay lại</button>
 
-				<button id="btn-save" class="btn btn-success"><i class="fa fa-save"></i> Lưu</button>
+				<button class="btn btn-success" id="button-save"><em class="fa fa-save"></em> Lưu</button>
 			</div>
 		</div>
 
-		<script
-			src="https://code.jquery.com/jquery-3.3.1.min.js"
-			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-			crossorigin="anonymous"
-		></script>
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<div class="script">
+			<script
+				src="https://code.jquery.com/jquery-3.3.1.min.js"
+				integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+				crossorigin="anonymous"
+			></script>
+			<script
+				src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+				integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+				crossorigin="anonymous"
+			></script>
+			<script
+				src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+				integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+				crossorigin="anonymous"
+			></script>
+			<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+			<script src="./js/edit.js"></script>
+		</div>
 	</body>
 </html>

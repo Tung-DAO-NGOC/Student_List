@@ -19,6 +19,22 @@ async function getList() {
 	}
 }
 
+function deleteUserAPI(id) {
+	return axios({
+		method: `delete`,
+		url: `/users/${id}`,
+	});
+}
+
+async function deleteUserAsync(id) {
+	try {
+		const response = await deleteUserAPI(id);
+		if (response.status === 200) getList();
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 // Function
 
 function renderBody(list) {
@@ -26,7 +42,6 @@ function renderBody(list) {
 
 	if (list.length === 0) {
 		elTBody.innerHTML = `<tr><td colspan="5"><div class="noUser">There is no user</tr>`;
-		return;
 	} else {
 		list.sort((a, b) => -(a.id - b.id));
 
@@ -48,10 +63,9 @@ function renderBody(list) {
 }
 
 function deleteUser(id) {
-	console.log(`Deleting ${id}`);
+	let answer = window.confirm(`Do you want to delete this user`);
+	if (answer) deleteUserAsync(id);
 }
-
-function sort(arrayUser) {}
 
 function clearBody() {
 	elTBody.innerHTML = "";

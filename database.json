@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Nguyễn Tuấn Anh",
-      "email": "tuananh@gmail.com",
+      "email": "tuananhpro@gmail.com",
       "phone": "0965234185",
       "birthday": "09/02/1995"
     },
@@ -34,13 +34,6 @@
       "email": "thuhang@gmail.com",
       "phone": "0345928245",
       "birthday": "01/05/1999"
-    },
-    {
-      "id": 83884,
-      "name": "Tùng Đào Ngọc",
-      "email": "tung.daongoc94@gmail.com",
-      "phone": "0913292057",
-      "birthday": "30/11/1994"
     }
   ]
 }
