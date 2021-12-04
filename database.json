@@ -34,6 +34,13 @@
       "email": "thuhang@gmail.com",
       "phone": "0345928245",
       "birthday": "01/05/1999"
+    },
+    {
+      "id": 84523,
+      "name": "Vũ Văn Thanh",
+      "email": "vanthanh@gmail.com",
+      "phone": "0965454185",
+      "birthday": "09/12/1995"
     }
   ]
 }

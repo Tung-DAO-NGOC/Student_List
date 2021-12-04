@@ -55,7 +55,7 @@ function renderBody(list) {
 				<td>
 					<a href="/edit.html?id=${user.id}" class="text-info"><i class="fa fa-edit"></i> Chỉnh sửa</a>
 					|
-					<a class="text-danger" onclick="deleteUser(${user.id})"><i class="fa fa-trash-alt"></i> Xóa</a>
+					<a class="text-danger" onclick="deleteUser(${user.id})" href="#"><i class="fa fa-trash-alt"></i> Xóa</a>
 				</td>
 			</tr>`;
 		});
