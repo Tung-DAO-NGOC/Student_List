@@ -4,8 +4,6 @@ const elTBody = document.querySelector("tbody");
 
 // Global
 
-let gUser = [];
-let userCheckNull = [];
 // API
 
 function getListAPI() {
