@@ -14,7 +14,23 @@ const elButtonReturn = document.querySelector("#button-return");
 const elButtonSave = document.querySelector("#button-save");
 //API
 
-// function postUserAPI() {}
+function postUserAPI(user) {
+	return axios.post("/users", {
+		id: randomUI(),
+		name: user.name,
+		email: user.email,
+		phone: user.phone,
+		birthday: user.birthday,
+	});
+}
+
+async function postUser(user) {
+	try {
+		await postUserAPI(user);
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 // Utility Function
 
@@ -30,69 +46,76 @@ function checkInput() {
 	const email = elInputEmail.value;
 	const phone = elInputPhone.value;
 
-	// Check name
-	if (name.length === 0) {
-		nameCheck = false;
-		elTextName.classList.remove("hidden");
-		elTextName.querySelector("span").innerText = "Không được để trống";
-	}
+	checkName();
+	checkBirthday();
+	checkEmail();
+	checkPhone();
 
-	if (nameCheck) {
-		nameCheck = /[a-zA-Z\u0080-\uFFFF]/.test(name);
-		if (!nameCheck) {
-			elTextName.classList.remove("hidden");
-			elTextName.querySelector("span").innerText = "Tên chỉ cho phép chữ";
-		}
-	}
-
-	// Check birthday
-	if (birthday.length === 0) {
-		birthdayCheck = false;
-		elTextBirthday.classList.remove("hidden");
-		elTextBirthday.querySelector("span").innerText = "Không được để trống";
-	}
-
-	if (birthdayCheck) {
-		birthdayCheck = /^(0[1-9]|[12]\d|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/.test(birthday);
-		if (!birthdayCheck) {
-			elTextBirthday.classList.remove("hidden");
-			elTextBirthday.querySelector("span").innerText = "Định dạng ngày sinh không đúng (dd/mm/yyyy)";
-		}
-	}
-
-	// Check email
-	if (email.length === 0) {
-		emailCheck = false;
-		elTextEmail.classList.remove("hidden");
-		elTextEmail.querySelector("span").innerText = "Không được để trống";
-	}
-
-	// /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-	if (emailCheck) {
-		emailCheck = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
-		if (!emailCheck) {
-			elTextEmail.classList.remove("hidden");
-			elTextEmail.querySelector("span").innerText = "Định dạng email không đúng";
-		}
-	}
-
-	if (phone.length === 0) {
-		phoneCheck = false;
-		elTextPhone.classList.remove("hidden");
-		elTextPhone.querySelector("span").innerText = "Không được để trống";
-	}
-
-	if (phoneCheck) {
-		phoneCheck = /^\d{10}$/.test(phone);
-		if (!phoneCheck) {
-			elTextPhone.classList.remove("hidden");
-			elTextPhone.querySelector("span").innerText = "Định dạng số điện thoại không đúng (10 số)";
-		}
-	}
-
-	console.log(name, birthday, email, phone);
-	console.log(nameCheck, birthdayCheck, emailCheck, phoneCheck);
 	return nameCheck && birthdayCheck && emailCheck && phoneCheck;
+
+	function checkName() {
+		if (name.length === 0) {
+			nameCheck = false;
+			elTextName.classList.remove("hidden");
+			elTextName.querySelector("span").innerText = "Không được để trống";
+		}
+
+		if (nameCheck) {
+			nameCheck = /[a-zA-Z\u0080-\uFFFF]/.test(name);
+			if (!nameCheck) {
+				elTextName.classList.remove("hidden");
+				elTextName.querySelector("span").innerText = "Tên chỉ cho phép chữ";
+			}
+		}
+	}
+
+	function checkBirthday() {
+		if (birthday.length === 0) {
+			birthdayCheck = false;
+			elTextBirthday.classList.remove("hidden");
+			elTextBirthday.querySelector("span").innerText = "Không được để trống";
+		}
+
+		if (birthdayCheck) {
+			birthdayCheck = /^(0[1-9]|[12]\d|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/.test(birthday);
+			if (!birthdayCheck) {
+				elTextBirthday.classList.remove("hidden");
+				elTextBirthday.querySelector("span").innerText = "Định dạng ngày sinh không đúng (dd/mm/yyyy)";
+			}
+		}
+	}
+
+	function checkEmail() {
+		if (email.length === 0) {
+			emailCheck = false;
+			elTextEmail.classList.remove("hidden");
+			elTextEmail.querySelector("span").innerText = "Không được để trống";
+		}
+
+		if (emailCheck) {
+			emailCheck = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+			if (!emailCheck) {
+				elTextEmail.classList.remove("hidden");
+				elTextEmail.querySelector("span").innerText = "Định dạng email không đúng";
+			}
+		}
+	}
+
+	function checkPhone() {
+		if (phone.length === 0) {
+			phoneCheck = false;
+			elTextPhone.classList.remove("hidden");
+			elTextPhone.querySelector("span").innerText = "Không được để trống";
+		}
+
+		if (phoneCheck) {
+			phoneCheck = /^\d{10}$/.test(phone);
+			if (!phoneCheck) {
+				elTextPhone.classList.remove("hidden");
+				elTextPhone.querySelector("span").innerText = "Định dạng số điện thoại không đúng (10 số)";
+			}
+		}
+	}
 }
 
 function hideError() {
@@ -100,6 +123,10 @@ function hideError() {
 	elTextBirthday.classList.add("hidden");
 	elTextEmail.classList.add("hidden");
 	elTextPhone.classList.add("hidden");
+}
+
+function randomUI() {
+	return Math.floor(Math.random() * 100000);
 }
 
 // Event listener
@@ -110,6 +137,13 @@ elButtonReturn.addEventListener("click", function () {
 
 elButtonSave.addEventListener("click", function () {
 	if (checkInput()) {
+		const newUser = {
+			name: elInputName.value,
+			email: elInputEmail.value,
+			phone: elInputPhone.value,
+			birthday: elInputBirthday.value,
+		};
+		postUser(newUser);
 		location.href = window.location.origin;
 	}
 });
